@@ -4,7 +4,6 @@
 #include "Constants.h"
 
 
-
 Chess::Chess(SDL_Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap)
 {
 	this->window = window;
@@ -12,7 +11,7 @@ Chess::Chess(SDL_Window* window, Renderer* renderer, std::map<const int, SDL_Tex
 	this->textureMap = textureMap;
 	shouldRun = true;
 
-	board = new Board();
+	board = new Board(std::string("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"));
 }
 
 Chess::~Chess()

@@ -29,16 +29,8 @@ void Renderer::render(
 	SDL_GetWindowSize(window, &w, &h);
 	int border;
 	int xBorder, yBorder;
-	if (w <= h) 
-	{ 
-		xBorder = (int)w * 0.3;
-		yBorder = h - (w - (xBorder));
-	}
-	else 
-	{ 
-		yBorder = (int)h * 0.3;
-		xBorder = w - (h - (yBorder));
-	}
+	if (w <= h) { xBorder = (int)w * 0.3; yBorder = h - (w - (xBorder)); }
+	else { yBorder = (int)h * 0.3; xBorder = w - (h - (yBorder)); }
 
 	int minimum = std::min({ w, h });
 	int pieceSize = (minimum - std::min({ xBorder, yBorder })) / 8;

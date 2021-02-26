@@ -10,7 +10,7 @@ Board::~Board()
 
 }
 
-void Board::Init(char fen[])
+void Board::Init(std::string fen)
 {
 	loadBoardFromFen(fen);
 }
@@ -25,7 +25,7 @@ std::vector<int> Board::getBoard()
 	return board;
 }
 
-void Board::loadBoardFromFen(char fen[])
+void Board::loadBoardFromFen(std::string fen)
 {
 	std::map<char, int> pieceFromChar = {
 		{'k', Piece::King},
@@ -41,13 +41,13 @@ void Board::loadBoardFromFen(char fen[])
 	// Check fen is properly formatted.
 	int numSpaces = 0;
 	int numRows = 1;
-	for (const char* p = fen; *p != 0; ++p)
+	for (const char& p: fen)
 	{
-		if (*p == ' ')
+		if (p == ' ')
 		{
 			++numSpaces;
 		}
-		else if (*p == '/')
+		else if (p == '/')
 		{
 			++numRows;
 		}
@@ -59,7 +59,7 @@ void Board::loadBoardFromFen(char fen[])
 		throw new std::invalid_argument("Invalid FEN");
 	}
 
-	const char* p = fen;
+	const char* p = fen.c_str();
 	int rank = 7;
 	int file = 0;
 	int pieceColor;
