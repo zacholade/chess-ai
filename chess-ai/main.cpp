@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+	SDL_SetWindowResizable(window, SDL_TRUE);
+
 	SDL_Renderer* sdl_renderer = SDL_CreateRenderer(
 		window,
 		-1,
@@ -30,7 +32,7 @@ int main(int argc, char *argv[])
 	);
 
 	Renderer* renderer = new Renderer(sdl_renderer);
-	std::map<const char*, SDL_Texture*> textureMap = Assets::initAssets(renderer);
+	std::map<const int, SDL_Texture*> textureMap = Assets::initAssets(renderer);
 
 	Chess* chess = new Chess(window, renderer, textureMap);
 	chess->play();

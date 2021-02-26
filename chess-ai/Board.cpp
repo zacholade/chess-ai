@@ -2,18 +2,8 @@
 #include <map>
 
 #include "Board.h"
-#include "Piece.h"
+#include "Constants.h"
 
-
-Board::Board()
-{
-	Init(startFEN);
-}
-
-Board::Board(char fen[])
-{
-	Init(fen);
-}
 
 Board::~Board()
 {
@@ -28,6 +18,11 @@ void Board::Init(char fen[])
 void Board::draw()
 {
 
+}
+
+std::vector<int> Board::getBoard()
+{
+	return board;
 }
 
 void Board::loadBoardFromFen(char fen[])
@@ -80,8 +75,19 @@ void Board::loadBoardFromFen(char fen[])
 		else
 		{
 			if (isupper(c)) { pieceColor = Piece::White; } else { pieceColor = Piece::Black; }
-			board[(rank * 8) + file] = pieceColor | pieceFromChar[tolower(c)];
+			int position = (rank * 8) + file;
+			board[position] = pieceColor | pieceFromChar[tolower(c)];
 			file++;
 		}
 	}
+
+	int j = 1;
+	for (int i : board)
+	{
+		std::cout << i << " ";
+		if (i < 10) { std::cout << " "; }
+		if (j % 8 == 0) { std::cout << "\n"; }
+		j++;
+	}
+	std::cout << std::endl;
 }

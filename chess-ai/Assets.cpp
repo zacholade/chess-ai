@@ -4,26 +4,26 @@
 #include "SDL_image.h"
 
 
-std::map<const char*, SDL_Texture*> Assets::initAssets(Renderer* renderer)
+std::map<const int, SDL_Texture*> Assets::initAssets(Renderer* renderer)
 {
-	static std::map<const char*, SDL_Texture*> textureMap;
+	static std::map<const int, SDL_Texture*> textureMap;
 	std::string root = "assets/";
 
-	std::vector<std::pair<const char*, const char*>> imgPathsToLoad;
-	imgPathsToLoad.push_back(std::make_pair("b_pawn", "black_pawn.png"));
-	imgPathsToLoad.push_back(std::make_pair("w_pawn", "white_pawn.png"));
-	imgPathsToLoad.push_back(std::make_pair("b_rook", "black_rook.png"));
-	imgPathsToLoad.push_back(std::make_pair("w_rook", "white_rook.png"));
-	imgPathsToLoad.push_back(std::make_pair("b_knight", "black_knight.png"));
-	imgPathsToLoad.push_back(std::make_pair("w_knight", "white_knight.png"));
-	imgPathsToLoad.push_back(std::make_pair("b_bishop", "black_bishop.png"));
-	imgPathsToLoad.push_back(std::make_pair("w_bishop", "white_bishop.png"));
-	imgPathsToLoad.push_back(std::make_pair("b_king", "black_king.png"));
-	imgPathsToLoad.push_back(std::make_pair("w_king", "white_king.png"));
-	imgPathsToLoad.push_back(std::make_pair("b_queen", "black_queen.png"));
-	imgPathsToLoad.push_back(std::make_pair("w_queen", "white_queen.png"));
+	std::vector<std::pair<const int, const char*>> imgPathsToLoad;
+	imgPathsToLoad.push_back(std::make_pair(18, "black_pawn.png"));
+	imgPathsToLoad.push_back(std::make_pair(10, "white_pawn.png"));
+	imgPathsToLoad.push_back(std::make_pair(21, "black_rook.png"));
+	imgPathsToLoad.push_back(std::make_pair(13, "white_rook.png"));
+	imgPathsToLoad.push_back(std::make_pair(19, "black_knight.png"));
+	imgPathsToLoad.push_back(std::make_pair(11, "white_knight.png"));
+	imgPathsToLoad.push_back(std::make_pair(20, "black_bishop.png"));
+	imgPathsToLoad.push_back(std::make_pair(12, "white_bishop.png"));
+	imgPathsToLoad.push_back(std::make_pair(17, "black_king.png"));
+	imgPathsToLoad.push_back(std::make_pair(9, "white_king.png"));
+	imgPathsToLoad.push_back(std::make_pair(22, "black_queen.png"));
+	imgPathsToLoad.push_back(std::make_pair(14, "white_queen.png"));
 
-	for (std::pair<const char*, const char*> pair : imgPathsToLoad)
+	for (std::pair<const int, const char*> pair : imgPathsToLoad)
 	{
 
 		std::string completePath = root;
@@ -35,7 +35,7 @@ std::map<const char*, SDL_Texture*> Assets::initAssets(Renderer* renderer)
 	std::string boardPath = root;
 	boardPath += "chess_board.png";
 	SDL_Texture* boardTexture = loadTexture(boardPath, renderer);
-	textureMap.insert({ "chess_board", boardTexture });
+	textureMap.insert({ 1, boardTexture });
 
 	return textureMap;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include <vector>
 
 static char startFEN[] = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
@@ -7,15 +8,16 @@ static char startFEN[] = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0
 class Board
 {
 public:
-	Board();
-	Board(char fen[]);
+	Board() : board(64, 0) { Init(startFEN); }
+	Board(char fen[]) : board(64, 0) { Init(fen); }
 	~Board();
 	void draw();
+	std::vector<int> getBoard();
 
 private:
 	void Init(char fen[]);
 	void loadBoardFromFen(char fen[]);
-	int board[64] = { 0 };
+	std::vector<int> board;
 	SDL_Texture* texture;
 };
 

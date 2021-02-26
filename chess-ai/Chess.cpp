@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Chess.h"
 #include "SDL_image.h"
+#include "Constants.h"
 
 
 
-Chess::Chess(SDL_Window* window, Renderer* renderer, std::map<const char*, SDL_Texture*> textureMap)
+Chess::Chess(SDL_Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap)
 {
 	this->window = window;
     this->renderer = renderer;
@@ -52,5 +53,5 @@ void Chess::pollEvents()
 
 void Chess::render()
 {
-	renderer->render(board, textureMap);
+	renderer->render(window, board, textureMap, Perspective::White);
 }

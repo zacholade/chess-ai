@@ -8,14 +8,14 @@
 class Chess
 {
 public:
-	Chess(SDL_Window* window, Renderer* renderer, std::map<const char*, SDL_Texture*> textureMap);
+	Chess(SDL_Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap);
 	~Chess();
 	void play();
 
 private:
 	SDL_Window* window;
 	Renderer* renderer;
-	std::map<const char*, SDL_Texture*> textureMap;
+	std::map<const int, SDL_Texture*> textureMap;
 
 	void gameLoop();
 	void pollEvents();

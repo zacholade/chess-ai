@@ -1,4 +1,6 @@
 #pragma once
+
+
 class Piece
 {
 public:
@@ -14,3 +16,10 @@ public:
 	const static int Black;
 };
 
+
+class Perspective
+{
+public:
+	const static int White;
+	const static int Black;
+};

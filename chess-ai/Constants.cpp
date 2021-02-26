@@ -1,4 +1,4 @@
-#include "Piece.h"
+#include "Constants.h"
 
 const int Piece::None = 0;
 const int Piece::King = 1;
@@ -10,3 +10,7 @@ const int Piece::Queen = 6;
 
 const int Piece::White = 8;
 const int Piece::Black = 16;
+
+
+const int Perspective::White = 0;
+const int Perspective::Black = 1;

@@ -8,7 +8,7 @@
 class Assets
 {
 public:
-	static std::map<const char*, SDL_Texture*> initAssets(Renderer* renderer);
+	static std::map<const int, SDL_Texture*> initAssets(Renderer* renderer);
 
 private:
 	static SDL_Texture* loadTexture(std::string, Renderer*);
