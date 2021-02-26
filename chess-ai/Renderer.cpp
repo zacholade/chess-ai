@@ -26,19 +26,30 @@ void Renderer::render(
 	SDL_RenderClear(renderer);
 
 	int w, h;
-	int border;
 	SDL_GetWindowSize(window, &w, &h);
+	int border;
+	int xBorder, yBorder;
+	if (w <= h) 
+	{ 
+		xBorder = (int)w * 0.3;
+		yBorder = h - (w - (xBorder));
+	}
+	else 
+	{ 
+		yBorder = (int)h * 0.3;
+		xBorder = w - (h - (yBorder));
+	}
+
 	int minimum = std::min({ w, h });
-	border = (int)minimum * 0.2;
-	int pieceSize = (minimum - border) / 8;
+	int pieceSize = (minimum - std::min({ xBorder, yBorder })) / 8;
 
 	int file = 0;
 	int rank = 0;
 	std::vector<int> boardVec = board->getBoard();
 
 	SDL_Rect boardDestination;
-	boardDestination.x = border;
-	boardDestination.y = border / 2;
+	boardDestination.x = xBorder / 2;
+	boardDestination.y = yBorder / 2;
 	boardDestination.w = pieceSize * 8; boardDestination.h = boardDestination.w;
 	SDL_RenderCopy(renderer, textureMap[1], NULL, &boardDestination);
 
@@ -46,8 +57,8 @@ void Renderer::render(
 	{
 		int piece = boardVec[i];
 		SDL_Rect destination;
-		destination.x = border + (file * pieceSize);
-		destination.y = (8 * pieceSize) - (rank * pieceSize);
+		destination.x = (xBorder / 2)  + (file * pieceSize);
+		destination.y = (yBorder / 2) + (8 * pieceSize) - ((rank + 1) * pieceSize);
 		destination.w = pieceSize;
 		destination.h = pieceSize;
 		if (file == 7) { file = 0; rank += 1; }
