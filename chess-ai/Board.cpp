@@ -15,11 +15,6 @@ void Board::Init(std::string fen)
 	loadBoardFromFen(fen);
 }
 
-void Board::draw()
-{
-
-}
-
 std::vector<int> Board::getBoard()
 {
 	return board;

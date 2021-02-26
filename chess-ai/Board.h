@@ -11,8 +11,7 @@ class Board
 public:
 	Board() : board(64, 0) { Init(startFEN); }
 	Board(std::string fen) : board(64, 0) { Init(fen); }
-	~Board();
-	void draw();
+	~Board() {};
 	std::vector<int> getBoard();
 
 private:
