@@ -32,11 +32,12 @@ void Renderer::render(
 	int w, h;
 	SDL_GetWindowSize(window, &w, &h);
 	int xBorder, yBorder;
+	float boarderScale = 0.15;
 
 	// We need to work out whether width or height is shorter.
 	// We scale the board based off the shortest axis.
-	if (w <= h) { xBorder = (int)w * 0.3; yBorder = h - (w - (xBorder)); }
-	else { yBorder = (int)h * 0.3; xBorder = w - (h - (yBorder)); }
+	if (w <= h) { xBorder = (int)w * boarderScale; yBorder = h - (w - (xBorder)); }
+	else { yBorder = (int)h * boarderScale; xBorder = w - (h - (yBorder)); }
 	int minimum = std::min({ w, h });
 	int pieceSize = (minimum - std::min({ xBorder, yBorder })) / 8;
 
@@ -63,7 +64,6 @@ void Renderer::render(
 		if (file == 7) { file = 0; rank += 1; }
 		else { file++; }
 		SDL_RenderCopy(renderer, textureMap[boardVec[i]], NULL, &destination);
-
 	}
 
 	// We are done drawing to this buffer. Present it.

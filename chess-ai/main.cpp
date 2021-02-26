@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
 		"Chess AI",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		600,
-		400,
+		1000,
+		720,
 		SDL_WINDOW_SHOWN
 	);
 

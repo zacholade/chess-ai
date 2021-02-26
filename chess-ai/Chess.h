@@ -17,12 +17,19 @@ private:
 	Renderer* renderer;
 	std::map<const int, SDL_Texture*> textureMap;
 
+	// Game loop logic.
 	void gameLoop();
 	void pollEvents();
 	void render();
 
+	// SDL event handlers.
+	void handleMouseButtonDown();
+	void handleMouseButtonUp();
+	void handleMouseMovement();
+
 	Board* board;
 	bool shouldRun;
+	int mouseX, mouseY;
 
 	
 };

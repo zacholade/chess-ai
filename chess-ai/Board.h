@@ -4,6 +4,7 @@
 #include <string>
 
 static std::string startFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+static std::string testFEN = "1rk5/4n1R1/2p4p/1pP3pP/1N2b1P1/4Q3/PP6/1KR5 w - - 0 1";
 
 
 class Board

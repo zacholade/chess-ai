@@ -9,9 +9,10 @@ Chess::Chess(SDL_Window* window, Renderer* renderer, std::map<const int, SDL_Tex
 	this->window = window;
     this->renderer = renderer;
 	this->textureMap = textureMap;
-	shouldRun = true;
+	board = new Board(testFEN);
 
-	board = new Board(std::string("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"));
+	shouldRun = true;
+	SDL_GetMouseState(&mouseX, &mouseY);
 }
 
 Chess::~Chess()
@@ -38,14 +39,19 @@ void Chess::pollEvents()
 	SDL_Event e;
 	if (SDL_PollEvent(&e))
 	{
-		if (e.type == SDL_QUIT)
+		switch (e.type)
 		{
+		case SDL_QUIT:
 			printf("Quit Event Polled. Closing..\n");
 			shouldRun = false;
-		}
-		else if (e.type == SDL_MOUSEBUTTONDOWN)
-		{
+
+		case SDL_MOUSEBUTTONDOWN:
 			printf("MBD\n");
+			handleMouseButtonDown();
+
+		case SDL_MOUSEBUTTONUP:
+			printf("MBU\n");
+			handleMouseButtonUp();
 		}
 	}
 }
@@ -53,4 +59,14 @@ void Chess::pollEvents()
 void Chess::render()
 {
 	renderer->render(window, board, textureMap, Perspective::White);
+}
+
+void Chess::handleMouseButtonDown()
+{
+	SDL_GetMouseState(&mouseX, &mouseY);
+}
+
+void Chess::handleMouseButtonUp()
+{
+	SDL_GetMouseState(&mouseX, &mouseY);
 }

@@ -5,11 +5,6 @@
 #include "Constants.h"
 
 
-Board::~Board()
-{
-
-}
-
 void Board::Init(std::string fen)
 {
 	loadBoardFromFen(fen);
@@ -31,7 +26,7 @@ void Board::loadBoardFromFen(std::string fen)
 		{'q', Piece::Queen}
 	};
 
-	printf("FEN: \"%s\"\n", fen);
+	printf("FEN: \"%s\"\n", fen.c_str());
 
 	// Check fen is properly formatted.
 	int numSpaces = 0;
@@ -50,7 +45,7 @@ void Board::loadBoardFromFen(std::string fen)
 
 	if (numRows != 8 || numSpaces != 5)
 	{
-		printf("Invalid FEN: \"%s\"\n", fen);
+		printf("Invalid FEN: \"%s\"\n", fen.c_str());
 		throw new std::invalid_argument("Invalid FEN");
 	}
 
