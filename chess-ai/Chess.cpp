@@ -12,6 +12,7 @@ Chess::Chess(Window* window, Renderer* renderer, std::map<const int, SDL_Texture
 	board = new Board();
 
 	shouldRun = true;
+	whiteToMove = true;
 }
 
 Chess::~Chess()

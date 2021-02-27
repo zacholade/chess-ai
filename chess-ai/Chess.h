@@ -25,5 +25,6 @@ private:
 
 	Board* board;
 	bool shouldRun;
+	bool whiteToMove;
 };
 

@@ -161,6 +161,8 @@
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Coord.cpp" />
+    <ClCompile Include="BoardRepresentation.cpp" />
     <ClCompile Include="Chess.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Constants.cpp" />
@@ -170,6 +172,8 @@
   <ItemGroup>
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Coord.h" />
+    <ClInclude Include="BoardRepresentation.h" />
     <ClInclude Include="Chess.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Renderer.h" />
