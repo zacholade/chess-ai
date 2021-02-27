@@ -43,7 +43,6 @@ void Chess::pollEvents()
 		case SDL_WINDOWEVENT:
 			if (e.window.event == SDL_WINDOWEVENT_RESIZED)
 			{
-				printf("window_r");
 				window->handleWindowResized(e.window.data1, e.window.data2);
 			}
 			break;
@@ -53,12 +52,10 @@ void Chess::pollEvents()
 			shouldRun = false;
 
 		case SDL_MOUSEBUTTONDOWN:
-			printf("MBD\n");
 			window->handleMouseButtonDown(board);
 			break;
 
 		case SDL_MOUSEBUTTONUP:
-			printf("MBU\n");
 			window->handleMouseButtonUp(board);
 			break;
 		

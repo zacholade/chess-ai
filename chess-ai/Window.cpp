@@ -27,7 +27,6 @@ int Window::getBoardPosition(Board* board, int mouseX, int mouseY)
     float boardPosX = ((float) (mouseX - (borderWidth / 2)) / (float) pieceSize) + 1;
     float boardPosY = ((float) (height - mouseY - (borderHeight / 2)) / (float) pieceSize) + 1;
 
-    std::cout << boardPosX << ", " << boardPosY << std::endl;
     if (boardPosX > 1 && boardPosX < 9 && boardPosY > 1 && boardPosY < 9)
     {
         int boardPos = (int) boardPosX - 1 + (((int) boardPosY * 8) - 8);
@@ -91,7 +90,6 @@ void Window::handleMouseButtonDown(Board* board)
 {
     SDL_GetMouseState(&mouseX, &mouseY);
     heldBoardPosition = getBoardPosition(board, mouseX, mouseY);
-    std::cout << "Board Index: " << heldBoardPosition << ", " << std::endl;
 }
 
 void Window::handleMouseButtonUp(Board* board)
