@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
 	Chess* chess = new Chess(window, renderer, textureMap);
 	chess->play();
 
-	
 	// Tidy up now we have left the game loop.
 	SDL_DestroyWindow(sdl_window);
 	SDL_Quit();

@@ -46,16 +46,23 @@ void Chess::pollEvents()
 
 		case SDL_MOUSEBUTTONDOWN:
 			printf("MBD\n");
-			window->handleMouseButtonDown();
+			window->handleMouseButtonDown(board);
+			break;
 
 		case SDL_MOUSEBUTTONUP:
 			printf("MBU\n");
 			window->handleMouseButtonUp();
+			break;
 		
 		case SDL_MOUSEMOTION:
 			window->handleMouseMovement();
+			break;
+		
+		case SDL_WINDOWEVENT_RESIZED:
+			window->handleWindowResized(e);
 		}
 	}
+
 }
 
 void Chess::render()

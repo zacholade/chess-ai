@@ -23,3 +23,7 @@ public:
 	const static int White;
 	const static int Black;
 };
+
+
+// Ratio of screen around chess board which is a border.
+const static float windowBorderScale = 0.15;

@@ -29,15 +29,15 @@ void Renderer::render(
 	SDL_RenderClear(renderer);
 
 	// Retrieve the size of the window.
-	int w, h;
+	int w = window->getWidth();
+	int h = window->getHeight();
 	SDL_GetWindowSize(window->getWindow(), &w, &h);
 	int xBorder, yBorder;
-	float boarderScale = 0.15;
 
 	// We need to work out whether width or height is shorter.
 	// We scale the board based off the shortest axis.
-	if (w <= h) { xBorder = (int)w * boarderScale; yBorder = h - (w - (xBorder)); }
-	else { yBorder = (int)h * boarderScale; xBorder = w - (h - (yBorder)); }
+	if (w <= h) { xBorder = (int)w * window->getBorderScale(); yBorder = h - (w - (xBorder)); }
+	else { yBorder = (int)h * window->getBorderScale(); xBorder = w - (h - (yBorder)); }
 	int minimum = std::min({ w, h });
 	int pieceSize = (minimum - std::min({ xBorder, yBorder })) / 8;
 

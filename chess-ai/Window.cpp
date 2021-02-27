@@ -1,9 +1,11 @@
 #include "Window.h"
+#include "Constants.h"
 
 Window::Window(SDL_Window* window)
 {
     this->window = window;
     SDL_GetMouseState(&mouseX, &mouseY);
+    borderScale = windowBorderScale;
 }
 
 Window::~Window()
@@ -22,7 +24,7 @@ int Window::getBoardPosition(Board* board, int mouseX, int mouseY)
 
 float Window::getBorderWidth()
 {
-    return borderWidth;
+    return borderScale;
 }
 
 int Window::getMouseX()
@@ -35,14 +37,30 @@ int Window::getMouseY()
     return mouseY;
 }
 
+int Window::getWidth()
+{
+    return width;
+}
+
+int Window::getHeight()
+{
+    return height;
+}
+
+float Window::getBorderScale()
+{
+    return borderScale;
+}
+
 std::pair<int, int> Window::getMousePos()
 {
     return std::pair<int, int>(mouseX, mouseY);
 }
 
-void Window::handleMouseButtonDown()
+void Window::handleMouseButtonDown(Board* board)
 {
     SDL_GetMouseState(&mouseX, &mouseY);
+    int boardPos = getBoardPosition(board, mouseX, mouseY);
 }
 
 void Window::handleMouseButtonUp()
@@ -53,4 +71,10 @@ void Window::handleMouseButtonUp()
 void Window::handleMouseMovement()
 {
     SDL_GetMouseState(&mouseX, &mouseY);
+}
+
+void Window::handleWindowResized(SDL_Event event)
+{
+    width = event.window.data1;
+    height = event.window.data2;
 }

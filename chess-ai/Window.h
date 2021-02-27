@@ -14,16 +14,21 @@ public:
 	float getBorderWidth();
 	int getMouseX();
 	int getMouseY();
+	int getWidth();
+	int getHeight();
+	float getBorderScale();
 	std::pair<int, int> getMousePos();
 
 	// SDL event handlers.
-	void handleMouseButtonDown();
+	void handleMouseButtonDown(Board* board);
 	void handleMouseButtonUp();
 	void handleMouseMovement();
+	void handleWindowResized(SDL_Event event);
 
 private:
 	SDL_Window* window;
-	float borderWidth;
+	float borderScale;
+	int width, height;
 	int mouseX, mouseY;
 };
 
