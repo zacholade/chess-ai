@@ -40,6 +40,15 @@ void Chess::pollEvents()
 	{
 		switch (e.type)
 		{
+		case SDL_WINDOWEVENT:
+			if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+			{
+				printf("window_r");
+				window->handleWindowResized(e.window.data1, e.window.data2);
+			}
+
+			break;
+
 		case SDL_QUIT:
 			printf("Quit Event Polled. Closing..\n");
 			shouldRun = false;
@@ -58,8 +67,6 @@ void Chess::pollEvents()
 			window->handleMouseMovement();
 			break;
 		
-		case SDL_WINDOWEVENT_RESIZED:
-			window->handleWindowResized(e);
 		}
 	}
 

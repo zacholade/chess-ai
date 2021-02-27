@@ -1,7 +1,6 @@
 #pragma once
 #include "SDL.h"
 #include <map>
-#include <algorithm>
 #include "Board.h"
 #include "Window.h"
 
