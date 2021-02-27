@@ -22,14 +22,13 @@ SDL_Window* Window::getWindow()
 
 int Window::getBoardPosition(Board* board, int mouseX, int mouseY)
 {
-    std::cout << mouseX << ", " << borderWidth << ", " << pieceSize << std::endl;
     float boardPosX = ((float) (mouseX - (borderWidth / 2)) / (float) pieceSize) + 1;
     float boardPosY = ((float) (height - mouseY - (borderHeight / 2)) / (float) pieceSize) + 1;
 
     std::cout << boardPosX << ", " << boardPosY << std::endl;
     if (boardPosX > 1 && boardPosX < 9 && boardPosY > 1 && boardPosY < 9)
     {
-        int boardPos = ((int) boardPosX - 1 + (((int) boardPosY * 8) - 8));
+        int boardPos = (int) boardPosX - 1 + (((int) boardPosY * 8) - 8);
         return boardPos;
     }
     // out of board bounds
