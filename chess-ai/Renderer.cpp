@@ -53,8 +53,16 @@ void Renderer::render(
 	{
 		int piece = boardVec[i];
 		SDL_Rect destination;
-		destination.x = (borderWidth / 2)  + (file * pieceSize);
-		destination.y = (borderHeight / 2) + (8 * pieceSize) - ((rank + 1) * pieceSize);
+		if (i == window->getHeldBoardPosition())
+		{
+			destination.x = window->getMouseX() - (pieceSize / 2);
+			destination.y = window->getMouseY() - (pieceSize / 2);
+		}
+		else
+		{
+			destination.x = (borderWidth / 2) + (file * pieceSize);
+			destination.y = (borderHeight / 2) + (8 * pieceSize) - ((rank + 1) * pieceSize);
+		}
 		destination.w = pieceSize;
 		destination.h = pieceSize;
 		if (file == 7) { file = 0; rank += 1; }

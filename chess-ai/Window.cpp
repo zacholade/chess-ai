@@ -5,6 +5,8 @@
 Window::Window(SDL_Window* window)
 {
     this->window = window;
+    heldBoardPosition = -1;
+
     borderScale = windowBorderScale;
     SDL_GetMouseState(&mouseX, &mouseY);
     SDL_GetWindowSize(window, &width, &height);
@@ -75,6 +77,11 @@ int Window::getPieceSize()
     return pieceSize;
 }
 
+int Window::getHeldBoardPosition()
+{
+    return heldBoardPosition;
+}
+
 std::pair<int, int> Window::getMousePos()
 {
     return std::pair<int, int>(mouseX, mouseY);
@@ -83,13 +90,19 @@ std::pair<int, int> Window::getMousePos()
 void Window::handleMouseButtonDown(Board* board)
 {
     SDL_GetMouseState(&mouseX, &mouseY);
-    int boardPos = getBoardPosition(board, mouseX, mouseY);
-    std::cout << "Board Index: " << boardPos << ", " << std::endl;
+    heldBoardPosition = getBoardPosition(board, mouseX, mouseY);
+    std::cout << "Board Index: " << heldBoardPosition << ", " << std::endl;
 }
 
-void Window::handleMouseButtonUp()
+void Window::handleMouseButtonUp(Board* board)
 {
     SDL_GetMouseState(&mouseX, &mouseY);
+    if (heldBoardPosition != -1)
+    {
+        int newPos = getBoardPosition(board, mouseX, mouseY);
+        board->movePiece(heldBoardPosition, newPos);
+        heldBoardPosition = -1;
+    }
 }
 
 void Window::handleMouseMovement()

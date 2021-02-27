@@ -15,6 +15,8 @@ public:
 	~Board() {};
 	std::vector<int> getBoard();
 
+	void movePiece(int oldPos, int newPos);
+
 private:
 	void Init(std::string fen);
 	void loadBoardFromFen(std::string fen);

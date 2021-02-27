@@ -46,7 +46,6 @@ void Chess::pollEvents()
 				printf("window_r");
 				window->handleWindowResized(e.window.data1, e.window.data2);
 			}
-
 			break;
 
 		case SDL_QUIT:
@@ -60,7 +59,7 @@ void Chess::pollEvents()
 
 		case SDL_MOUSEBUTTONUP:
 			printf("MBU\n");
-			window->handleMouseButtonUp();
+			window->handleMouseButtonUp(board);
 			break;
 		
 		case SDL_MOUSEMOTION:

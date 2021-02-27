@@ -15,6 +15,12 @@ std::vector<int> Board::getBoard()
 	return board;
 }
 
+void Board::movePiece(int oldPos, int newPos)
+{
+	board[newPos] = board[oldPos];
+	board[oldPos] = 0;
+}
+
 void Board::loadBoardFromFen(std::string fen)
 {
 	std::map<char, int> pieceFromChar = {
