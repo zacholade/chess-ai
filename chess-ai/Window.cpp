@@ -100,9 +100,12 @@ void Window::handleMouseButtonUp(Board* board)
     if (heldBoardPosition != -1)
     {
         int newPos = getBoardPosition(board, mouseX, mouseY);
-        board->movePiece(heldBoardPosition, newPos);
-        heldBoardPosition = -1;
+        if (newPos != -1) 
+        {
+            board->movePiece(heldBoardPosition, newPos);
+        }
     }
+    heldBoardPosition = -1;
 }
 
 void Window::handleMouseMovement()

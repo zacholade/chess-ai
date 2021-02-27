@@ -17,8 +17,13 @@ std::vector<int> Board::getBoard()
 
 void Board::movePiece(int oldPos, int newPos)
 {
-	board[newPos] = board[oldPos];
-	board[oldPos] = 0;
+	// Picking up a piece and letting go shouldn't do anything.
+	if (newPos != oldPos)
+	{
+		board[newPos] = board[oldPos];
+		board[oldPos] = 0;
+	}
+
 }
 
 void Board::loadBoardFromFen(std::string fen)
