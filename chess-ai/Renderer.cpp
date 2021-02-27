@@ -18,7 +18,6 @@ void Renderer::render(
 	std::map<const int, SDL_Texture*> textureMap,
 	int Perspective)
 {
-
 	// Set the background colour to off black for the window.
 	Uint8 red = 44;
 	Uint8 green = 47;
@@ -28,21 +27,18 @@ void Renderer::render(
 	// Clears the window and sets the background colour to the one specified above.
 	SDL_RenderClear(renderer);
 
-	// Retrieve the size of the window.
-	int w = window->getWidth();
-	int h = window->getHeight();
-	SDL_GetWindowSize(window->getWindow(), &w, &h);
-
 	renderBoard(window, textureMap[1]);
 
 	// Loop over all the pieces on the board and draw them in
 	// their corresponding position. Accounting for window size & borders.
 	int file = 0;
 	int rank = 0;
+	int heldPiecePos = window->getHeldBoardPosition();
 	std::vector<int> boardVec = board->getBoard();
 	for (int i = 0; i < 64; i++)
 	{
-		if (i != window->getHeldBoardPosition()) 
+		// We want the piece held by the mouse to render on top.
+		if (i != heldPiecePos) 
 		{
 			renderPiece(window, textureMap[boardVec[i]], rank, file);
 		}
@@ -52,7 +48,6 @@ void Renderer::render(
 
 	}
 
-	int heldPiecePos = window->getHeldBoardPosition();
 	if (heldPiecePos != -1)
 	{
 		renderPieceAtMouse(window, textureMap[boardVec[heldPiecePos]], window->getMouseX(), window->getMouseY());
