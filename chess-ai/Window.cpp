@@ -117,6 +117,9 @@ void Window::handleWindowResized(int width, int height)
 {
     // We need to work out whether width or height is shorter.
     // We scale the board based off the shortest axis.
+    this->width = width;
+    this->height = height;
+
     if (width <= height) 
     { 
         borderWidth = width * borderScale;

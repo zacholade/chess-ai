@@ -9,7 +9,7 @@ Chess::Chess(Window* window, Renderer* renderer, std::map<const int, SDL_Texture
 	this->window = window;
     this->renderer = renderer;
 	this->textureMap = textureMap;
-	board = new Board(testFEN);
+	board = new Board();
 
 	shouldRun = true;
 }
