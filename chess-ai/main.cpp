@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "Assets.h"
 #include "Chess.h"
+#include "Window.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +10,7 @@ int main(int argc, char *argv[])
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	SDL_Window* window = SDL_CreateWindow(
+	SDL_Window* sdl_window = SDL_CreateWindow(
 		"Chess AI",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
@@ -18,15 +19,18 @@ int main(int argc, char *argv[])
 		SDL_WINDOW_SHOWN
 	);
 
-	if (window == nullptr) {
+	if (sdl_window == nullptr) {
 		printf("Could not create the window: %s\n", SDL_GetError());
 		return 1;
 	}
 
-	SDL_SetWindowResizable(window, SDL_TRUE);
+	Window* window = new Window(sdl_window);
+
+	SDL_SetWindowResizable(sdl_window, SDL_TRUE);
+
 
 	SDL_Renderer* sdl_renderer = SDL_CreateRenderer(
-		window,
+		sdl_window,
 		-1,
 		0
 	);
@@ -39,7 +43,7 @@ int main(int argc, char *argv[])
 
 	
 	// Tidy up now we have left the game loop.
-	SDL_DestroyWindow(window);
+	SDL_DestroyWindow(sdl_window);
 	SDL_Quit();
 	return 0;
 }

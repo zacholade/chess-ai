@@ -3,17 +3,18 @@
 #include <map>
 #include "Board.h"
 #include "Renderer.h"
+#include "Window.h"
 
 
 class Chess
 {
 public:
-	Chess(SDL_Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap);
+	Chess(Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap);
 	~Chess();
 	void play();
 
 private:
-	SDL_Window* window;
+	Window* window;
 	Renderer* renderer;
 	std::map<const int, SDL_Texture*> textureMap;
 
@@ -22,15 +23,7 @@ private:
 	void pollEvents();
 	void render();
 
-	// SDL event handlers.
-	void handleMouseButtonDown();
-	void handleMouseButtonUp();
-	void handleMouseMovement();
-
 	Board* board;
 	bool shouldRun;
-	int mouseX, mouseY;
-
-	
 };
 

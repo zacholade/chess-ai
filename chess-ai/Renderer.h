@@ -3,6 +3,7 @@
 #include <map>
 #include <algorithm>
 #include "Board.h"
+#include "Window.h"
 
 class Renderer
 {
@@ -10,7 +11,7 @@ public:
 	Renderer(SDL_Renderer* renderer);
 	~Renderer();
 	void render(
-		SDL_Window* window, Board* board,
+	    Window* window, Board* board,
 		std::map<const int,
 		SDL_Texture*> textureMap,
 		int perspective);

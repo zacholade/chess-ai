@@ -13,7 +13,7 @@ Renderer::~Renderer()
 }
 
 void Renderer::render(
-	SDL_Window* window,
+	Window* window,
 	Board* board,
 	std::map<const int, SDL_Texture*> textureMap,
 	int Perspective)
@@ -30,7 +30,7 @@ void Renderer::render(
 
 	// Retrieve the size of the window.
 	int w, h;
-	SDL_GetWindowSize(window, &w, &h);
+	SDL_GetWindowSize(window->getWindow(), &w, &h);
 	int xBorder, yBorder;
 	float boarderScale = 0.15;
 

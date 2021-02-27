@@ -4,7 +4,7 @@
 #include "Constants.h"
 
 
-Chess::Chess(SDL_Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap)
+Chess::Chess(Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap)
 {
 	this->window = window;
     this->renderer = renderer;
@@ -12,7 +12,6 @@ Chess::Chess(SDL_Window* window, Renderer* renderer, std::map<const int, SDL_Tex
 	board = new Board(testFEN);
 
 	shouldRun = true;
-	SDL_GetMouseState(&mouseX, &mouseY);
 }
 
 Chess::~Chess()
@@ -47,11 +46,14 @@ void Chess::pollEvents()
 
 		case SDL_MOUSEBUTTONDOWN:
 			printf("MBD\n");
-			handleMouseButtonDown();
+			window->handleMouseButtonDown();
 
 		case SDL_MOUSEBUTTONUP:
 			printf("MBU\n");
-			handleMouseButtonUp();
+			window->handleMouseButtonUp();
+		
+		case SDL_MOUSEMOTION:
+			window->handleMouseMovement();
 		}
 	}
 }
@@ -61,12 +63,3 @@ void Chess::render()
 	renderer->render(window, board, textureMap, Perspective::White);
 }
 
-void Chess::handleMouseButtonDown()
-{
-	SDL_GetMouseState(&mouseX, &mouseY);
-}
-
-void Chess::handleMouseButtonUp()
-{
-	SDL_GetMouseState(&mouseX, &mouseY);
-}
