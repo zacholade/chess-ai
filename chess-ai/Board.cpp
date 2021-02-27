@@ -26,6 +26,14 @@ void Board::movePiece(int oldPos, int newPos)
 
 }
 
+std::pair<int, int> Board::getRankAndFileFromBoardPos(int boardPos)
+{
+	int rank, file;
+	rank = (float)boardPos / (float)8;
+	file = boardPos % 8;
+	return std::pair<int, int>(rank, file);
+}
+
 void Board::loadBoardFromFen(std::string fen)
 {
 	std::map<char, int> pieceFromChar = {

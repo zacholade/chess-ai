@@ -33,16 +33,7 @@ void Renderer::render(
 	int h = window->getHeight();
 	SDL_GetWindowSize(window->getWindow(), &w, &h);
 
-	int borderWidth = window->getBorderWidth();
-	int borderHeight = window->getBorderHeight();
-	int pieceSize = window->getPieceSize();
-
-	// Draw the 8x8 grid board background.
-	SDL_Rect boardDestination;
-	boardDestination.x = borderWidth / 2;
-	boardDestination.y = borderHeight / 2;
-	boardDestination.w = pieceSize * 8; boardDestination.h = boardDestination.w;
-	SDL_RenderCopy(renderer, textureMap[1], NULL, &boardDestination);
+	renderBoard(window, textureMap[1]);
 
 	// Loop over all the pieces on the board and draw them in
 	// their corresponding position. Accounting for window size & borders.
@@ -51,25 +42,21 @@ void Renderer::render(
 	std::vector<int> boardVec = board->getBoard();
 	for (int i = 0; i < 64; i++)
 	{
-		int piece = boardVec[i];
-		SDL_Rect destination;
-		if (i == window->getHeldBoardPosition())
+		if (i != window->getHeldBoardPosition()) 
 		{
-			destination.x = window->getMouseX() - (pieceSize / 2);
-			destination.y = window->getMouseY() - (pieceSize / 2);
+			renderPiece(window, textureMap[boardVec[i]], rank, file);
 		}
-		else
-		{
-			destination.x = (borderWidth / 2) + (file * pieceSize);
-			destination.y = (borderHeight / 2) + (8 * pieceSize) - ((rank + 1) * pieceSize);
-		}
-		destination.w = pieceSize;
-		destination.h = pieceSize;
+
 		if (file == 7) { file = 0; rank += 1; }
 		else { file++; }
-		SDL_RenderCopy(renderer, textureMap[boardVec[i]], NULL, &destination);
+
 	}
 
+	int heldPiecePos = window->getHeldBoardPosition();
+	if (heldPiecePos != -1)
+	{
+		renderPieceAtMouse(window, textureMap[boardVec[heldPiecePos]], window->getMouseX(), window->getMouseY());
+	}
 	// We are done drawing to this buffer. Present it.
 	SDL_RenderPresent(renderer);
 }
@@ -77,4 +64,43 @@ void Renderer::render(
 SDL_Renderer* Renderer::getRenderer()
 {
 	return renderer;
+}
+
+void Renderer::renderBoard(Window* window, SDL_Texture* texture)
+{
+	int borderWidth = window->getBorderWidth();
+	int borderHeight = window->getBorderHeight();
+	int pieceSize = window->getPieceSize();
+
+	// Draw the 8x8 grid board background.
+	SDL_Rect dest;
+	dest.x = borderWidth / 2;
+	dest.y = borderHeight / 2;
+	dest.w = pieceSize * 8; dest.h = dest.w;
+	SDL_RenderCopy(renderer, texture, NULL, &dest);
+}
+void Renderer::renderPieceAtMouse(Window* window, SDL_Texture* texture, int posX, int posY)
+{
+	int pieceSize = window->getPieceSize();
+
+	SDL_Rect dest;
+	dest.x = posX - (pieceSize / 2);
+	dest.y = posY - (pieceSize / 2);
+	dest.w = pieceSize;
+	dest.h = pieceSize;
+	SDL_RenderCopy(renderer, texture, NULL, &dest);
+}
+
+void Renderer::renderPiece(Window* window, SDL_Texture* texture, int rank, int file)
+{
+	int borderWidth = window->getBorderWidth();
+	int borderHeight = window->getBorderHeight();
+	int pieceSize = window->getPieceSize();
+
+	SDL_Rect dest;
+	dest.x = (borderWidth / 2) + (file * pieceSize);
+	dest.y = (borderHeight / 2) + (8 * pieceSize) - ((rank + 1) * pieceSize);
+	dest.w = pieceSize;
+	dest.h = pieceSize;
+	SDL_RenderCopy(renderer, texture, NULL, &dest);
 }
