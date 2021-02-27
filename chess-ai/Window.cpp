@@ -90,7 +90,7 @@ void Window::handleMouseButtonDown(Board* board)
 {
     SDL_GetMouseState(&mouseX, &mouseY);
     int boardPos = getBoardPosition(board, mouseX, mouseY);
-    if (board->getBoard()[boardPos] != 0)
+    if (boardPos != -1 && board->getBoard()[boardPos] != 0)
     {
         heldBoardPosition = boardPos;
     }
