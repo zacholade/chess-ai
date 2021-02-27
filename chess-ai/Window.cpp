@@ -89,7 +89,11 @@ std::pair<int, int> Window::getMousePos()
 void Window::handleMouseButtonDown(Board* board)
 {
     SDL_GetMouseState(&mouseX, &mouseY);
-    heldBoardPosition = getBoardPosition(board, mouseX, mouseY);
+    int boardPos = getBoardPosition(board, mouseX, mouseY);
+    if (board->getBoard()[boardPos] != 0)
+    {
+        heldBoardPosition = boardPos;
+    }
 }
 
 void Window::handleMouseButtonUp(Board* board)
