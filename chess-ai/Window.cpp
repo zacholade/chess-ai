@@ -90,7 +90,7 @@ void Window::handleMouseButtonDown(Board* board)
 {
     SDL_GetMouseState(&mouseX, &mouseY);
     int boardPos = getBoardPosition(board, mouseX, mouseY);
-    if (boardPos != -1 && board->getBoard()[boardPos] != 0)
+    if (boardPos != -1 && board->getBoard()[boardPos] != Piece::None)
     {
         heldBoardPosition = boardPos;
     }
@@ -117,11 +117,11 @@ void Window::handleMouseMovement()
 
 void Window::handleWindowResized(int width, int height)
 {
-    // We need to work out whether width or height is shorter.
-    // We scale the board based off the shortest axis.
     this->width = width;
     this->height = height;
 
+    // We need to work out whether width or height is shorter.
+    // We scale the board based off the shortest axis.
     if (width <= height) 
     { 
         borderWidth = width * borderScale;

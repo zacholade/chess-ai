@@ -65,7 +65,6 @@ void Chess::pollEvents()
 		
 		}
 	}
-
 }
 
 void Chess::render()
