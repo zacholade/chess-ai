@@ -20,11 +20,10 @@ public:
 	int getWidth();
 	int getHeight();
 
-	float getBorderWidth();
+	int getBorderWidth();
+	int getBorderHeight();
 	const float getBorderScale();
 
-	int getBorderX();
-	int getBorderY();
 	int getPieceSize();
 
 	// SDL event handlers.
@@ -39,7 +38,7 @@ private:
 	int width, height;
 	int mouseX, mouseY;
 
-	int borderX, borderY;
+	int borderWidth, borderHeight;
 	int pieceSize;
 };
 

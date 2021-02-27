@@ -22,15 +22,28 @@ SDL_Window* Window::getWindow()
 
 int Window::getBoardPosition(Board* board, int mouseX, int mouseY)
 {
-    int boardPosX;
-    boardPosX = mouseX - (width * borderScale);
-    std::cout << boardPosX << std::endl;
-    return boardPosX;
+    std::cout << mouseX << ", " << borderWidth << ", " << pieceSize << std::endl;
+    float boardPosX = ((float) (mouseX - (borderWidth / 2)) / (float) pieceSize) + 1;
+    float boardPosY = ((float) (height - mouseY - (borderHeight / 2)) / (float) pieceSize) + 1;
+
+    std::cout << boardPosX << ", " << boardPosY << std::endl;
+    if (boardPosX > 1 && boardPosX < 9 && boardPosY > 1 && boardPosY < 9)
+    {
+        int boardPos = ((int) boardPosX - 1 + (((int) boardPosY * 8) - 8));
+        return boardPos;
+    }
+    // out of board bounds
+    return -1;
 }
 
-float Window::getBorderWidth()
+int Window::getBorderWidth()
 {
-    return borderScale;
+    return borderWidth;
+}
+
+int Window::getBorderHeight()
+{
+    return borderHeight;
 }
 
 int Window::getMouseX()
@@ -58,16 +71,6 @@ const float Window::getBorderScale()
     return borderScale;
 }
 
-int Window::getBorderX()
-{
-    return borderX;
-}
-
-int Window::getBorderY()
-{
-    return borderY;
-}
-
 int Window::getPieceSize()
 {
     return pieceSize;
@@ -82,6 +85,7 @@ void Window::handleMouseButtonDown(Board* board)
 {
     SDL_GetMouseState(&mouseX, &mouseY);
     int boardPos = getBoardPosition(board, mouseX, mouseY);
+    std::cout << "Board Index: " << boardPos << ", " << std::endl;
 }
 
 void Window::handleMouseButtonUp()
@@ -100,14 +104,14 @@ void Window::handleWindowResized(int width, int height)
     // We scale the board based off the shortest axis.
     if (width <= height) 
     { 
-        borderX = (int)width * borderScale;
-        borderY = height - (width - (borderX));
+        borderWidth = width * borderScale;
+        borderHeight = height - (width - (borderWidth));
     }
     else
     {
-        borderY = (int)height * borderScale;
-        borderX = width - (height - (borderY));
+        borderHeight = height * borderScale;
+        borderWidth = width - (height - (borderHeight));
     }
     int minimum = std::min({ width, height });
-    pieceSize = (minimum - std::min({ borderX, borderY })) / 8;
+    pieceSize = (minimum - std::min({ borderWidth, borderHeight })) / 8;
 }
