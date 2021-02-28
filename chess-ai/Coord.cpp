@@ -14,3 +14,4 @@ bool Coord::IsLightSquare()
 {
 	return (fileIndex + rankIndex) % 2 != 0;
 }
+

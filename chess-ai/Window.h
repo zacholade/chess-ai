@@ -26,11 +26,9 @@ public:
 
 	int getPieceSize();
 
-	int getHeldBoardPosition();
-
 	// SDL event handlers.
 	void handleMouseButtonDown(Board* board);
-	void handleMouseButtonUp(Board * board);
+	void handleMouseButtonUp(Board* board);
 	void handleMouseMovement();
 	void handleWindowResized(int width, int height);
 
@@ -42,10 +40,4 @@ private:
 
 	int borderWidth, borderHeight;
 	int pieceSize;
-
-	// Denotes the board position relating to the piece which is currently
-	// being held by the mouse (holding left click + dragging around)
-	// -1 means no piece
-	int heldBoardPosition;
 };
-

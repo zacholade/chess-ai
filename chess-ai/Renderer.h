@@ -19,6 +19,6 @@ public:
 private:
 	SDL_Renderer* renderer;
 	void renderBoard(Window* window, SDL_Texture* texture);
-	void renderPieceAtMouse(Window* window, SDL_Texture* texture, int posX, int posY);
+	void renderPieceAtScreenPos(Window* window, SDL_Texture* texture, int posX, int posY);
 	void renderPiece(Window* window, SDL_Texture* texture, int rank, int file);
 };

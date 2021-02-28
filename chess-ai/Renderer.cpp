@@ -33,7 +33,7 @@ void Renderer::render(
 	// their corresponding position. Accounting for window size & borders.
 	int file = 0;
 	int rank = 0;
-	int heldPiecePos = window->getHeldBoardPosition();
+	int heldPiecePos = board->getHeldBoardPosition();
 	std::vector<int> boardVec = board->getBoard();
 	for (int i = 0; i < 64; i++)
 	{
@@ -45,7 +45,7 @@ void Renderer::render(
 
 	if (heldPiecePos != -1)
 	{
-		renderPieceAtMouse(window, textureMap[boardVec[heldPiecePos]], window->getMouseX(), window->getMouseY());
+		renderPieceAtScreenPos(window, textureMap[boardVec[heldPiecePos]], window->getMouseX(), window->getMouseY());
 	}
 	// We are done drawing to this buffer. Present it.
 	SDL_RenderPresent(renderer);
@@ -69,7 +69,7 @@ void Renderer::renderBoard(Window* window, SDL_Texture* texture)
 	dest.w = pieceSize * 8; dest.h = dest.w;
 	SDL_RenderCopy(renderer, texture, NULL, &dest);
 }
-void Renderer::renderPieceAtMouse(Window* window, SDL_Texture* texture, int posX, int posY)
+void Renderer::renderPieceAtScreenPos(Window* window, SDL_Texture* texture, int posX, int posY)
 {
 	int pieceSize = window->getPieceSize();
 

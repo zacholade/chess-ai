@@ -15,13 +15,23 @@ std::vector<int> Board::getBoard()
 	return board;
 }
 
+int Board::getHeldBoardPosition()
+{
+	return heldBoardPosition;
+}
+
+void Board::setHeldBoardPosition(int pos)
+{
+	heldBoardPosition = pos;
+}
+
 void Board::movePiece(int oldPos, int newPos)
 {
 	// Picking up a piece and letting go shouldn't do anything.
 	if (newPos != oldPos)
 	{
 		board[newPos] = board[oldPos];
-		board[oldPos] = 0;
+		board[oldPos] = Piece::None;
 	}
 
 }
