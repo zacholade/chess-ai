@@ -5,7 +5,7 @@ const std::string BoardRepresentation::rankNames = "12345678";
 
 int BoardRepresentation::fileIndex(int squareIndex)
 {
-	// Bit wise And on the 
+	// Bit wise And on the last 3 digits.
 	return squareIndex & 0b000111;
 }
 
