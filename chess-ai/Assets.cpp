@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "Constants.h"
 
 
 std::map<const int, SDL_Texture*> Assets::initAssets(Renderer* renderer)
@@ -10,18 +11,18 @@ std::map<const int, SDL_Texture*> Assets::initAssets(Renderer* renderer)
 	std::string root = "assets/";
 
 	std::vector<std::pair<const int, const char*>> imgPathsToLoad;
-	imgPathsToLoad.push_back(std::make_pair(18, "black_pawn.png"));
-	imgPathsToLoad.push_back(std::make_pair(10, "white_pawn.png"));
-	imgPathsToLoad.push_back(std::make_pair(21, "black_rook.png"));
-	imgPathsToLoad.push_back(std::make_pair(13, "white_rook.png"));
-	imgPathsToLoad.push_back(std::make_pair(19, "black_knight.png"));
-	imgPathsToLoad.push_back(std::make_pair(11, "white_knight.png"));
-	imgPathsToLoad.push_back(std::make_pair(20, "black_bishop.png"));
-	imgPathsToLoad.push_back(std::make_pair(12, "white_bishop.png"));
-	imgPathsToLoad.push_back(std::make_pair(17, "black_king.png"));
-	imgPathsToLoad.push_back(std::make_pair(9, "white_king.png"));
-	imgPathsToLoad.push_back(std::make_pair(22, "black_queen.png"));
-	imgPathsToLoad.push_back(std::make_pair(14, "white_queen.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::Black | Piece::Pawn, "black_pawn.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::White | Piece::Pawn, "white_pawn.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::Black | Piece::Rook, "black_rook.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::White | Piece::Rook, "white_rook.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::Black | Piece::Knight, "black_knight.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::White | Piece::Knight, "white_knight.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::Black | Piece::Bishop, "black_bishop.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::White | Piece::Bishop, "white_bishop.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::Black | Piece::King, "black_king.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::White | Piece::King, "white_king.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::Black | Piece::Queen, "black_queen.png"));
+	imgPathsToLoad.push_back(std::make_pair(Piece::White | Piece::Queen, "white_queen.png"));
 
 	for (std::pair<const int, const char*> pair : imgPathsToLoad)
 	{
