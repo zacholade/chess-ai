@@ -3,6 +3,7 @@
 #include "Assets.h"
 #include "Chess.h"
 #include "Window.h"
+#include "BoardRepresentation.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,6 +19,8 @@ int main(int argc, char *argv[])
 		720,
 		SDL_WINDOW_SHOWN
 	);
+
+	std::cout << BoardRepresentation::squareNameFromCoord(2, 2) << std::endl;
 
 	if (sdl_window == nullptr) {
 		printf("Could not create the window: %s\n", SDL_GetError());

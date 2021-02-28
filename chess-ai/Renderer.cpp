@@ -39,7 +39,7 @@ void Renderer::render(
 	{
 		// We want the piece held by the mouse to render on top.
 		if (i != heldPiecePos) { renderPiece(window, textureMap[boardVec[i]], rank, file); }
-		if (file == 7) { file = 0; rank += 1; }
+		if (file == 7) { file = 0; rank ++; }
 		else { file++; }
 	}
 

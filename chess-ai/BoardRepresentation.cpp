@@ -1,5 +1,5 @@
 #include "BoardRepresentation.h"
-
+#include <iostream>
 const std::string BoardRepresentation::fileNames = "abcdefgh";
 const std::string BoardRepresentation::rankNames = "12345678";
 
@@ -26,10 +26,7 @@ Coord BoardRepresentation::coordFromIndex(int squareIndex)
 
 std::string BoardRepresentation::squareNameFromCoord(int fileIndex, int rankIndex)
 { 
-	char name[2];
-	strcpy_s(name, 1, &fileNames[fileIndex]);
-	strcat_s(name, 2, &rankNames[rankIndex]);
-	return name;
+	return std::string(1, fileNames[fileIndex]) + rankNames[rankIndex];
 }
 
 std::string BoardRepresentation::squareNameFromCoord(int squareIndex)
