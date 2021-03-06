@@ -23,8 +23,8 @@ SDL_Window* Window::getWindow()
 
 int Window::getBoardPosition(Board* board, int mouseX, int mouseY)
 {
-    float boardPosX = ((float) (mouseX - (borderWidth / 2)) / (float) pieceSize) + 1;
-    float boardPosY = ((float) (height - mouseY - (borderHeight / 2)) / (float) pieceSize) + 1;
+    double boardPosX = ((double) ((double) mouseX - ((double) borderWidth / 2)) / (double) pieceSize) + 1;
+    double boardPosY = ((double) ((double) height - (double) mouseY - ((double) borderHeight / 2)) / (double) pieceSize) + 1;
 
     if (boardPosX > 1 && boardPosX < 9 && boardPosY > 1 && boardPosY < 9)
     {
@@ -65,7 +65,7 @@ int Window::getHeight()
     return height;
 }
 
-const float Window::getBorderScale()
+const double Window::getBorderScale()
 {
     return borderScale;
 }

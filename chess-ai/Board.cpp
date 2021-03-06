@@ -39,7 +39,7 @@ void Board::movePiece(int oldPos, int newPos)
 std::pair<int, int> Board::getRankAndFileFromBoardPos(int boardPos)
 {
 	int rank, file;
-	rank = (float)boardPos / (float)8;
+	rank = (double)boardPos / (double)8;
 	file = boardPos % 8;
 	return std::pair<int, int>(rank, file);
 }

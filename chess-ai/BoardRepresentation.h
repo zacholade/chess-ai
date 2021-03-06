@@ -20,6 +20,4 @@ public:
 	static std::string squareNameFromCoord(Coord coord);
 
 	static bool lightSquare(int fileIndex, int rankIndex);
-
 };
-

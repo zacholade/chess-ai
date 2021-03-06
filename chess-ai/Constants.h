@@ -26,4 +26,4 @@ public:
 
 
 // Ratio of screen around chess board which is a border.
-const static float windowBorderScale = 0.15;
+const static double windowBorderScale = 0.15;

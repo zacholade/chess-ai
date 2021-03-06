@@ -22,7 +22,7 @@ public:
 
 	int getBorderWidth();
 	int getBorderHeight();
-	const float getBorderScale();
+	const double getBorderScale();
 
 	int getPieceSize();
 
@@ -34,7 +34,7 @@ public:
 
 private:
 	SDL_Window* window;
-	float borderScale;
+	double borderScale;
 	int width, height;
 	int mouseX, mouseY;
 
