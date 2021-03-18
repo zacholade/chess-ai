@@ -48,6 +48,9 @@
     <ClCompile Include="MoveData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FenUtility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MoveData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FenUtility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

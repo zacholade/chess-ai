@@ -43,3 +43,9 @@ bool BoardRepresentation::lightSquare(int fileIndex, int rankIndex)
 {
 	return (fileIndex + rankIndex) % 2 != 0;
 }
+
+int BoardRepresentation::fileIndexFromName(char fileName)
+{
+	int asciiOffset = 97;  // a = 97
+	return fileName - asciiOffset;
+}

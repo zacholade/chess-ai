@@ -39,31 +39,29 @@ void Chess::pollEvents()
 	SDL_Event e;
 	if (SDL_PollEvent(&e))
 	{
-		switch (e.type)
-		{
-		case SDL_WINDOWEVENT:
-			if (e.window.event == SDL_WINDOWEVENT_RESIZED)
-			{
-				window->handleWindowResized(e.window.data1, e.window.data2);
-			}
-			break;
+		switch (e.type) {
+			case SDL_WINDOWEVENT:
+				if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+				{
+					window->handleWindowResized(e.window.data1, e.window.data2);
+				}
+				break;
 
-		case SDL_QUIT:
-			printf("Quit Event Polled. Closing..\n");
-			shouldRun = false;
+			case SDL_QUIT:
+				printf("Quit Event Polled. Closing..\n");
+				shouldRun = false;
 
-		case SDL_MOUSEBUTTONDOWN:
-			window->handleMouseButtonDown(board);
-			break;
+			case SDL_MOUSEBUTTONDOWN:
+				window->handleMouseButtonDown(board);
+				break;
 
-		case SDL_MOUSEBUTTONUP:
-			window->handleMouseButtonUp(board);
-			break;
+			case SDL_MOUSEBUTTONUP:
+				window->handleMouseButtonUp(board);
+				break;
 		
-		case SDL_MOUSEMOTION:
-			window->handleMouseMovement();
-			break;
-		
+			case SDL_MOUSEMOTION:
+				window->handleMouseMovement();
+				break;
 		}
 	}
 }

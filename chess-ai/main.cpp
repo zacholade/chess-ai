@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
 		SDL_WINDOW_SHOWN
 	);
 
+	SDL_GL_CreateContext(sdl_window);
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 16);
 	if (sdl_window == nullptr) {
 		printf("Could not create the window: %s\n", SDL_GetError());
 		return 1;

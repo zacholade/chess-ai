@@ -3,6 +3,7 @@ class Coord
 {
 public:
 	Coord(int fileIndex, int rankIndex);
+	Coord(int fileIndex, char rankIndex);
 	~Coord();
 	int fileIndex;
 	int rankIndex;

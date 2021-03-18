@@ -3,6 +3,7 @@
 
 #include "Board.h"
 #include "Constants.h"
+#include "FenUtility.h"
 
 
 void Board::Init(std::string fen)
@@ -33,7 +34,6 @@ void Board::movePiece(int oldPos, int newPos)
 		board[newPos] = board[oldPos];
 		board[oldPos] = Piece::None;
 	}
-
 }
 
 std::pair<int, int> Board::getRankAndFileFromBoardPos(int boardPos)
@@ -46,67 +46,40 @@ std::pair<int, int> Board::getRankAndFileFromBoardPos(int boardPos)
 
 void Board::loadBoardFromFen(std::string fen)
 {
-	std::map<char, int> pieceFromChar = {
-		{'k', Piece::King},
-		{'p', Piece::Pawn},
-		{'n', Piece::Knight},
-		{'b', Piece::Bishop},
-		{'r', Piece::Rook},
-		{'q', Piece::Queen}
-	};
-
 	printf("FEN: \"%s\"\n", fen.c_str());
 
-	// Check fen is properly formatted.
-	int numSpaces = 0;
-	int numRows = 1;
-	for (const char& p: fen)
-	{
-		if (p == ' ')
-		{
-			++numSpaces;
-		}
-		else if (p == '/')
-		{
-			++numRows;
-		}
-	}
-
-	if (numRows != 8 || numSpaces != 5)
+	if (!FenUtility::checkFenFormat(fen))
 	{
 		printf("Invalid FEN: \"%s\"\n", fen.c_str());
 		throw new std::invalid_argument("Invalid FEN");
 	}
 
-	const char* p = fen.c_str();
-	int rank = 7;
-	int file = 0;
-	int pieceColor;
-	for (; *p != ' '; ++p)
-	{
-		const char c = *p;
-		if (isdigit(c)) { file += (int)c - '0'; }
-		else if (c == '/')
-		{
-			rank--;
-			file = 0;
-		}
-		else
-		{
-			if (isupper(c)) { pieceColor = Piece::White; } else { pieceColor = Piece::Black; }
-			int position = (rank * 8) + file;
-			board[position] = pieceColor | pieceFromChar[tolower(c)];
-			file++;
-		}
+	std::string delimiter = " ";
+	std::string token;
+	int i = 0;
+	size_t position = 0;
+	size_t last = 0;
+	size_t next = 0;
+	std::vector<std::string> fenList;
+	while ((next = fen.find(delimiter, last)) != std::string::npos) {
+		token = fen.substr(last, next - last);
+		last = next + 1;
+		fenList.push_back(token);
+		//fen.erase(0, position + delimiter.length());
 	}
+	fenList.push_back(fen.substr(last));
 
-	int j = 1;
-	for (int i : board)
-	{
-		std::cout << i << " ";
-		if (i < 10) { std::cout << " "; }
-		if (j % 8 == 0) { std::cout << "\n"; }
-		j++;
-	}
-	std::cout << std::endl;
+	board = FenUtility::getBoardLayout(fenList[0]);
+	whiteToMove = FenUtility::getWhiteToMove(fenList[1]);
+
+	std::tuple<bool, bool, bool, bool> castlingRights = FenUtility::getCastlingRights(fenList[2]);
+	whiteKingSideCastleRights = std::get<0>(castlingRights);
+	whiteQueenSideCastleRights = std::get<1>(castlingRights);
+	blackKingSideCastleRights = std::get<2>(castlingRights);
+	blackQueenSideCastleRights = std::get<3>(castlingRights);
+
+	enPassantPosition = FenUtility::getEnPassant(fenList[3]);
+
+	halfMoveClock = FenUtility::getHalfMoveClock(fenList[4]);
+	fullMoveNumber =  FenUtility::getFullMoveNumber(fenList[5]);
 }

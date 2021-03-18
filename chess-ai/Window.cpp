@@ -70,7 +70,7 @@ const double Window::getBorderScale()
     return borderScale;
 }
 
-int Window::getPieceSize()
+double Window::getPieceSize()
 {
     return pieceSize;
 }

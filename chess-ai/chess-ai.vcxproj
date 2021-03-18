@@ -164,6 +164,7 @@
     <ClCompile Include="Coord.cpp" />
     <ClCompile Include="BoardRepresentation.cpp" />
     <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="FenUtility.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="Move.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="BoardRepresentation.h" />
     <ClInclude Include="Chess.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="FenUtility.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="MoveData.h" />
     <ClInclude Include="Renderer.h" />

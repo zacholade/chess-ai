@@ -24,7 +24,7 @@ public:
 	int getBorderHeight();
 	const double getBorderScale();
 
-	int getPieceSize();
+	double getPieceSize();
 
 	// SDL event handlers.
 	void handleMouseButtonDown(Board* board);
@@ -39,5 +39,5 @@ private:
 	int mouseX, mouseY;
 
 	int borderWidth, borderHeight;
-	int pieceSize;
+	double pieceSize;
 };
