@@ -22,7 +22,7 @@ bool FenUtility::checkFenFormat(std::string fen)
 	return true;
 }
 
-std::vector<int> FenUtility::getBoardLayout(std::string fen)
+std::vector<int> FenUtility::getBoardLayout(std::string fenSegment)
 {
 	std::vector<int> board(64, 0);
 
@@ -38,7 +38,7 @@ std::vector<int> FenUtility::getBoardLayout(std::string fen)
 	int rank = 7;
 	int file = 0;
 	int pieceColor;
-	for (char& c : fen) {
+	for (char& c : fenSegment) {
 		if (isdigit(c)) { file += (int)c - '0'; }
 		else if (c == '/') { rank--; file = 0; }
 		else {
@@ -52,20 +52,20 @@ std::vector<int> FenUtility::getBoardLayout(std::string fen)
 	return board;
 }
 
-bool FenUtility::getWhiteToMove(std::string fen)
+bool FenUtility::getWhiteToMove(std::string fenSegment)
 {
-	if (fen == "w") { return true; }
+	if (fenSegment == "w") { return true; }
 	// b otherwise.
 	return false;
 }
 
-std::tuple<bool, bool, bool, bool> FenUtility::getCastlingRights(std::string fen)
+std::tuple<bool, bool, bool, bool> FenUtility::getCastlingRights(std::string fenSegment)
 {
 	bool whiteKingSideCastleRights, whiteQueenSideCastleRights,
 		 blackKingSideCastleRights, blackQueenSideCastleRights = false;
 
-	if (fen != "-") {
-		for (char& c : fen) {
+	if (fenSegment != "-") {
+		for (char& c : fenSegment) {
 			if (c == 'K') { whiteKingSideCastleRights = true; }
 			else if (c == 'Q') { whiteQueenSideCastleRights = true; }
 			else if (c == 'k') { blackKingSideCastleRights = true; }
@@ -78,22 +78,22 @@ std::tuple<bool, bool, bool, bool> FenUtility::getCastlingRights(std::string fen
 						   blackQueenSideCastleRights);
 }
 
-Coord* FenUtility::getEnPassant(std::string fen)
+Coord* FenUtility::getEnPassant(std::string fenSegment)
 {
-	if (fen != "-") {
-		int fileIndex = fen[1];
-		int rankIndex = BoardRepresentation::fileIndexFromName(fen[0]);
+	if (fenSegment != "-") {
+		int fileIndex = fenSegment[1];
+		int rankIndex = BoardRepresentation::fileIndexFromName(fenSegment[0]);
 		return new Coord(fileIndex, rankIndex);
 	}
 	return NULL;
 }
 
-int FenUtility::getHalfMoveClock(std::string fen)
+int FenUtility::getHalfMoveClock(std::string fenSegment)
 {
-	return std::stoi(fen);
+	return std::stoi(fenSegment);
 }
 
-int FenUtility::getFullMoveNumber(std::string fen)
+int FenUtility::getFullMoveNumber(std::string fenSegment)
 {
-	return std::stoi(fen);
+	return std::stoi(fenSegment);
 }

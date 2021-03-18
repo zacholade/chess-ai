@@ -8,11 +8,11 @@ class FenUtility
 {
 public:
 	static bool checkFenFormat(std::string fen);
-	static std::vector<int> getBoardLayout(std::string fen);
-	static bool getWhiteToMove(std::string fen);
-	static std::tuple<bool, bool, bool, bool> getCastlingRights(std::string fen);
-	static Coord* getEnPassant(std::string fen);
-	static int getHalfMoveClock(std::string fen);
-	static int getFullMoveNumber(std::string fen);
+	static std::vector<int> getBoardLayout(std::string fenSegment);
+	static bool getWhiteToMove(std::string fenSegment);
+	static std::tuple<bool, bool, bool, bool> getCastlingRights(std::string fenSegment);
+	static Coord* getEnPassant(std::string fenSegment);
+	static int getHalfMoveClock(std::string fenSegment);
+	static int getFullMoveNumber(std::string fenSegment);
 };
 
