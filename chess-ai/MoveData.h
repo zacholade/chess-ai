@@ -8,6 +8,6 @@ public:
 
 	static void generateMoveData();
 
-	const static unsigned long long knightAttacks[64];
+	const static uint64_t knightAttacks[64];
 };
 

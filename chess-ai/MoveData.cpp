@@ -17,28 +17,44 @@ void MoveData::generateMoveData()
 	// excluding itself.
 	std::map<int, std::list<int>> numSquaresPerDirection;
 
-	for (int file = 0; file < 8; file++)
+	for (int squareIndex = 0; squareIndex < 64; squareIndex++)
 	{
-		for (int rank = 0; rank < 8; rank++)
-		{
-			int squareIndex = BoardRepresentation::indexFromCoord(file, rank);
-			int numN = 7 - rank;
-			int numS = rank;
-			int numW = file;
-			int numE = 7 - file;
+		int file = BoardRepresentation::fileIndex(squareIndex);
+		int rank = BoardRepresentation::rankIndex(squareIndex);
+		
+		// Generate numSquaresPerDirection.
+		int numN = 7 - rank;
+		int numS = rank;
+		int numW = file;
+		int numE = 7 - file;
+		numSquaresPerDirection[squareIndex] = {
+			numN,
+			numE,
+			numS,
+			numW,
+			std::min(numN, numE),
+			std::min(numS, numE),
+			std::min(numS, numW),
+			std::min(numN, numW),
+		};
 
-			numSquaresPerDirection[squareIndex] = {
-				numN,
-				numE,
-				numS,
-				numW,
-				std::min(numN, numE),
-				std::min(numS, numE),
-				std::min(numS, numW),
-				std::min(numN, numW),
-			};
+		// Generate knight attack bit boards.
+		uint64_t knightBitBoard = 0;
+		for (int knightOffset : tricardinalOffsets)
+		{
+			int knightAttackSquareIndex = squareIndex + knightOffset;
+
+			if (knightAttackSquareIndex >= 0 && knightAttackSquareIndex < 64)
+			{
+				int knightAttackrank = BoardRepresentation::rankIndex(knightAttackSquareIndex);
+				int knightAttackFile = BoardRepresentation::fileIndex(knightAttackSquareIndex);
+
+				// This could wrap around side of board. Check file and rank have not changed more than 2.
+				if (std::max(std::abs(file - knightAttackFile), std::abs(rank - knightAttackrank)) == 2)
+				{
+					knightBitBoard |= 1ULL << knightAttackSquareIndex;
+				}
+			}
 		}
 	}
-
-
 }
