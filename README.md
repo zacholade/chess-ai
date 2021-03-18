@@ -4,7 +4,7 @@ Soon to be stockfish 2.
 
 Currently includes quite simple, intuitive and slick GUI:
 
-![](https://github.com/zacholade/chess-ai/blob/master/gui.png?raw=true | width=400)
+![](https://github.com/zacholade/chess-ai/blob/master/gui.png?raw=true)
 
 ## TODO List
 
