@@ -1,5 +1,6 @@
 # chess-ai
 A fun project of implementing a chess AI that I am working on in my free time.
+
 Soon to be stockfish 2.
 
 Currently includes quite simple, intuitive and slick GUI:
