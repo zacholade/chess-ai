@@ -11,7 +11,7 @@ Currently includes quite simple, intuitive and slick GUI:
 
 [x] Store chess board in a vector and add methods to move pieces.
 
-[x] Add methods to import chess board from a [FEN String](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
+[x] Add methods to import a chess board from a [FEN String](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
 
 [x] Display the chess board as a GUI. Window/Renderer classes.
 
