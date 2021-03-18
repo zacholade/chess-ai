@@ -65,7 +65,6 @@ void Board::loadBoardFromFen(std::string fen)
 		token = fen.substr(last, next - last);
 		last = next + 1;
 		fenList.push_back(token);
-		//fen.erase(0, position + delimiter.length());
 	}
 	fenList.push_back(fen.substr(last));
 

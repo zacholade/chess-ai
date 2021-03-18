@@ -1,7 +1,10 @@
 #include "BoardRepresentation.h"
 #include <iostream>
+
+
 const std::string BoardRepresentation::fileNames = "abcdefgh";
 const std::string BoardRepresentation::rankNames = "12345678";
+
 
 int BoardRepresentation::fileIndex(int squareIndex)
 {

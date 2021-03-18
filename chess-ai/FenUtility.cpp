@@ -7,7 +7,6 @@
 #include "BoardRepresentation.h"
 
 
-
 bool FenUtility::checkFenFormat(std::string fen)
 {
 	// Returns true is FEN is properly formatted. False otherwise.
@@ -39,11 +38,7 @@ std::vector<int> FenUtility::getBoardLayout(std::string fen)
 	int rank = 7;
 	int file = 0;
 	int pieceColor;
-	std::cout << fen << std::endl;
 	for (char& c : fen) {
-;
-		std::cout << c << std::endl;
-		std::cout << isdigit(c) << std::endl;
 		if (isdigit(c)) { file += (int)c - '0'; }
 		else if (c == '/') { rank--; file = 0; }
 		else {
