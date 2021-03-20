@@ -38,7 +38,10 @@ void Renderer::render(
 	for (int i = 0; i < 64; i++)
 	{
 		// We want the piece held by the mouse to render on top.
-		if (i != heldPiecePos) { renderPiece(window, textureMap[boardVec[i]], rank, file); }
+		if (i != heldPiecePos && boardVec[i] != Piece::None) 
+		{ 
+			renderPiece(window, textureMap[boardVec[i]], rank, file); 
+		}
 		if (file == 7) { file = 0; rank ++; }
 		else { file++; }
 	}
@@ -69,6 +72,7 @@ void Renderer::renderBoard(Window* window, SDL_Texture* texture)
 	dest.w = pieceSize * 8; dest.h = dest.w;
 	SDL_RenderCopy(renderer, texture, NULL, &dest);
 }
+
 void Renderer::renderPieceAtScreenPos(Window* window, SDL_Texture* texture, int posX, int posY)
 {
 	int pieceSize = window->getPieceSize();
