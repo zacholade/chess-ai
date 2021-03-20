@@ -8,6 +8,24 @@ const int MoveData::orthogonalOffsets[] = { 1, -1, 8, -8 };  // Linear offsets
 const int MoveData::diagonalOffsets[] = { 7, 9, -7, -9 };  // Diagonal offsets
 const int MoveData::tricardinalOffsets[] = { 6, 10, 15, 17, -6, -10, -15, -17 };  // Knight offsets
 
+MoveData::MoveData()
+{
+	generateMoveData();
+}
+
+MoveData::~MoveData()
+{
+}
+
+uint64_t MoveData::getKnightAttackBitBoards()
+{
+	return uint64_t();
+}
+
+std::map<int, std::list<int>> MoveData::getNumSquaresPerDirection()
+{
+	return std::map<int, std::list<int>>();
+}
 
 // For each square (64) on the board, calculate the number of moves in each direction possible.
 void MoveData::generateMoveData()
@@ -15,7 +33,7 @@ void MoveData::generateMoveData()
 	// A map containing a list for each square on the chess board.
 	// Each list contains 8 ints, denoting num squares to the edge of the board
 	// excluding itself.
-	std::map<int, std::list<int>> numSquaresPerDirection;
+	static std::map<int, std::list<int>> numSquaresPerDirection;
 
 	for (int squareIndex = 0; squareIndex < 64; squareIndex++)
 	{
@@ -56,5 +74,6 @@ void MoveData::generateMoveData()
 				}
 			}
 		}
+		knightAttackBitBoards[squareIndex] = knightBitBoard;
 	}
 }

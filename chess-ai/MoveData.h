@@ -1,13 +1,25 @@
 #pragma once
+#include <list>
+#include <map>
+
+
 class MoveData
 {
 public:
+	MoveData();
+	~MoveData();
+
 	const static int orthogonalOffsets[];
 	const static int diagonalOffsets[];
 	const static int tricardinalOffsets[];
 
-	static void generateMoveData();
+	uint64_t getKnightAttackBitBoards();
+	std::map<int, std::list<int>> getNumSquaresPerDirection();
 
-	const static uint64_t knightAttacks[64];
+private:
+	void generateMoveData();
+
+	uint64_t knightAttackBitBoards[64];
+	std::map<int, std::list<int>> numSquaresPerDirection;
 };
 

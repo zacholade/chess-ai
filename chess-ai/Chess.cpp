@@ -2,6 +2,7 @@
 #include "Chess.h"
 #include "SDL_image.h"
 #include "Constants.h"
+#include "MoveData.h"
 
 
 Chess::Chess(Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap)
@@ -13,6 +14,7 @@ Chess::Chess(Window* window, Renderer* renderer, std::map<const int, SDL_Texture
 
 	shouldRun = true;
 	whiteToMove = true;
+	moveData = MoveData();
 }
 
 Chess::~Chess()

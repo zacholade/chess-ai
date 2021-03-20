@@ -4,6 +4,7 @@
 #include "Board.h"
 #include "Renderer.h"
 #include "Window.h"
+#include "MoveData.h"
 
 
 class Chess
@@ -12,6 +13,7 @@ public:
 	Chess(Window* window, Renderer* renderer, std::map<const int, SDL_Texture*> textureMap);
 	~Chess();
 	void play();
+	MoveData moveData;
 
 private:
 	Window* window;
@@ -27,4 +29,3 @@ private:
 	bool shouldRun;
 	bool whiteToMove;
 };
-
